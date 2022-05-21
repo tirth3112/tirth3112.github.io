@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <title>Contact - Personal Portfolio</title>
     <link rel="shortcut icon" href="img/TP_logo.png">
+    <link href="node_modules/sweetalert2/dist/sweetalert2.css" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -42,6 +44,7 @@
 </head>
 
 <body class="contact">
+<script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!-- Live Style Switcher Starts - demo only -->
 <div id="switcher" class="">
     <div class="content-switcher">
@@ -198,7 +201,7 @@
                             </div>
                             <div class="col-12">
                                 <textarea name="Message" placeholder="YOUR MESSAGE"></textarea>
-                                <button type="submit" class="btn btn-contact">Send Message</button>
+                                <button onclick="validation()" type="submit" class="btn btn-contact">Send Message</button>
                             </div>
                             <div class="col-12 form-message">
                                 <span class="output_message text-center font-weight-600 text-uppercase"></span>
@@ -213,6 +216,15 @@
 
 </section>
 <!-- Template JS Files -->
+<script>
+    function validation(){
+        Swal.fire(
+            'Good job!',
+            'You clicked the button!',
+            'success'
+        )
+    }
+</script>
 <script src="js/jquery-3.5.0.min.js"></script>
 <script src="js/styleswitcher.js"></script>
 <script src="js/preloader.min.js"></script>
