@@ -6,8 +6,7 @@
     <meta charset="utf-8">
     <title>Contact - Personal Portfolio</title>
     <link rel="shortcut icon" href="img/TP_logo.png">
-    <link href="node_modules/sweetalert2/dist/sweetalert2.css" rel="stylesheet"/>
-    <link href="style.css" rel="stylesheet"/>
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,8 +43,8 @@
 </head>
 
 <body class="contact">
-<script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-<!-- Live Style Switcher Starts - demo only -->
+
+    <!-- Live Style Switcher Starts - demo only -->
 <div id="switcher" class="">
     <div class="content-switcher">
         <h4>STYLE SWITCHER</h4>
@@ -154,10 +153,10 @@
         <div class="row">
             <!-- Left Side Starts -->
             <div class="col-12 col-lg-4">
-                <h3 class="text-uppercase custom-title mb-0 ft-wt-600 pb-3">What are you thinking? Go ahead and shoot me a call or email now!!</h3>
+                <h3 class="text-uppercase custom-title mb-0 ft-wt-600 pb-3">What are you thinking? Go ahead and shoot me an E-mail or Call now!!</h3>
                 <p class="open-sans-font mb-3">Feel free to get in touch with me. I am always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
                 <p class="open-sans-font custom-span-contact position-relative">
-                    <i href="mailto: tmp9936@nyu.edu" class="fa fa-envelope-open position-absolute" ></i>
+                    <i href="mailto: tmp3199@gmail.com" class="fa fa-envelope-open position-absolute" ></i>
                     <span class="d-block">e-mail me</span>tmp3199@gmail.com
                 </p>
                 <p class="open-sans-font custom-span-contact position-relative">
@@ -178,30 +177,28 @@
             <!-- Left Side Ends -->
             <!-- Contact Form Starts -->
             <div class="col-12 col-lg-8">
-                <form class="row g-3" action="https://formsubmit.co/4d8d96e5d01abee44c9d761b5d9cf242" method="POST">
+                <form class="row g-3" method="post">
                     
-                    <!--Honeypot-->
+                   <!-----  
                     <input type="text" name="_honey" style="display: none;">
-
-                    <!-- Disable Captcha-->
                     <input type="hidden" name="_captcha" value="false">
 
-                    <!--<input type="hidden" name="_next" value="https://tirth3112.github.io/Message_Sent.html">--->
+                    <input type="hidden" name="_next" value="https://tirth3112.github.io/Message_Sent.html"> ---->
 
                     <div class="contactform">
                         <div class="row">
                             <div class="col-12 col-md-4">
-                                <input type="text" name="Name" placeholder="YOUR NAME">
+                                <input id="name" type="text" name="Name" placeholder="YOUR NAME" class="Name">
                             </div>
                             <div class="col-12 col-md-4">
-                                <input type="email" name="E-mail" placeholder="YOUR EMAIL">
+                                <input id="email" type="email" name="E-mail" placeholder="YOUR EMAIL" class="Email">
                             </div>
                             <div class="col-12 col-md-4">
-                                <input type="text" name="Subject" placeholder="YOUR SUBJECT">
+                                <input  id="subject" type="text" name="Subject" placeholder="YOUR SUBJECT" class="Subject">
                             </div>
                             <div class="col-12">
-                                <textarea name="Message" placeholder="YOUR MESSAGE"></textarea>
-                                <button onclick="validation()" type="submit" class="btn btn-contact">Send Message</button>
+                                <textarea id="msg" name="Message" placeholder="YOUR MESSAGE" class="message"></textarea>
+                                <button id="sendMail" type="button" class="btn btn-contact">Send Message</button>
                             </div>
                             <div class="col-12 form-message">
                                 <span class="output_message text-center font-weight-600 text-uppercase"></span>
@@ -216,15 +213,7 @@
 
 </section>
 <!-- Template JS Files -->
-<script>
-    function validation(){
-        Swal.fire(
-            'Good job!',
-            'You clicked the button!',
-            'success'
-        )
-    }
-</script>
+
 <script src="js/jquery-3.5.0.min.js"></script>
 <script src="js/styleswitcher.js"></script>
 <script src="js/preloader.min.js"></script>
@@ -237,6 +226,53 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/custom.js"></script>
+<!-------Contact US Script------>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("7JdcrwSMZnzThDdB3");
+   })();
+</script>
+
+<!---SweetAlert_JS---->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+$(document).on('click','#sendMail',function(){
+         
+
+         var name = $("#name").val()
+           var email = $("#email").val()
+           var Subject = $("#subject").val()
+           var message = $("#msg").val()
+             console.log(name)
+             templateParams ={
+                 "to_name":"Tirth Patel",
+                 "from_name":name,
+                 "message":message,
+                 "subject": Subject
+             }
+             emailjs.send("service_tirth","template_jcdf29a", templateParams)
+             .then(function(response) {
+         
+                 swal({
+                     title: "Be In Touch With You Shortly",
+                      text: `Successfully sent message`,
+                     icon: "success",
+                 })
+             console.log('SUCCESS!', response.status, response.text);
+             }, function(error) {
+             console.log('FAILED...', error);
+             });
+        })
+
+
+</script>
+
+
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-61Y14Y3YTF"></script>
 <script>
